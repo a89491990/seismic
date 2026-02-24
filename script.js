@@ -28,6 +28,11 @@ if (document.getElementById("question")) loadQuestion();
 function loadQuestion() {
   const q = quizData[current];
 
+  const box = document.querySelector(".quiz-box");
+  box.classList.remove("fade-slide");
+  void box.offsetWidth;
+  box.classList.add("fade-slide");
+
   document.getElementById("question").innerText = q.question;
   document.getElementById("qNumber").innerText =
     `Question ${current+1} / ${quizData.length}`;
@@ -91,7 +96,14 @@ function showResult(){
   document.querySelector(".quiz-box").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
 
-  document.getElementById("score").innerText=score;
+  let count=0;
+  const scoreEl=document.getElementById("score");
+
+  const interval=setInterval(()=>{
+    count++;
+    scoreEl.innerText=count;
+    if(count>=score) clearInterval(interval);
+  },80);
 
   let percent=(score/quizData.length)*100;
   const grade=document.getElementById("gradeText");
