@@ -1,4 +1,3 @@
-// Quiz Data
 const quizData = [
   {
     question: "What is Seismic?",
@@ -9,24 +8,21 @@ const quizData = [
     question: "Main feature of Seismic?",
     options: ["Speed", "Privacy", "Gaming", "Ads"],
     answer: 1
+  },
+  {
+    question: "Seismic is used for?",
+    options: ["Entertainment", "Finance", "Photos", "Music"],
+    answer: 1
   }
 ];
 
 let current = 0;
 let score = 0;
 let time = 10;
+let interval;
 
-// Glow effect
-const glow = document.createElement("div");
-glow.classList.add("glow");
-document.body.appendChild(glow);
+const nextBtn = document.getElementById("nextBtn");
 
-document.addEventListener("mousemove", e => {
-  glow.style.left = e.clientX + "px";
-  glow.style.top = e.clientY + "px";
-});
-
-// Load question
 function loadQuestion() {
   const q = quizData[current];
   document.getElementById("question").innerText = q.question;
@@ -40,8 +36,16 @@ function loadQuestion() {
     div.classList.add("option");
 
     div.onclick = () => {
-      if (index === q.answer) score++;
-      nextQuestion();
+      if (index === q.answer) {
+        div.classList.add("correct");
+        score++;
+      } else {
+        div.classList.add("wrong");
+      }
+
+      document.querySelectorAll(".option").forEach(o => {
+        o.style.pointerEvents = "none";
+      });
     };
 
     optionsDiv.appendChild(div);
@@ -51,50 +55,58 @@ function loadQuestion() {
   startTimer();
 }
 
-// Next
-function nextQuestion() {
+nextBtn.onclick = () => {
   current++;
   if (current < quizData.length) {
+    animateFade();
     loadQuestion();
   } else {
-    document.querySelector(".quiz-box").classList.add("hidden");
-    document.getElementById("result").classList.remove("hidden");
-    animateScore(score);
+    showResult();
   }
-}
+};
 
-// Progress
 function updateProgress() {
-  let percent = (current / quizData.length) * 100;
+  let percent = ((current) / quizData.length) * 100;
   document.getElementById("progress").style.width = percent + "%";
 }
 
-// Timer
 function startTimer() {
+  clearInterval(interval);
   time = 10;
-  const circle = document.querySelector("circle");
+  document.getElementById("time").innerText = time;
 
-  const interval = setInterval(() => {
+  interval = setInterval(() => {
     time--;
     document.getElementById("time").innerText = time;
-    circle.style.strokeDashoffset = 220 - (time * 22);
 
     if (time <= 0) {
       clearInterval(interval);
-      nextQuestion();
+      nextBtn.click();
     }
   }, 1000);
 }
 
-// Score animation
+function animateFade() {
+  const box = document.querySelector(".quiz-box");
+  box.classList.remove("fade");
+  void box.offsetWidth;
+  box.classList.add("fade");
+}
+
+function showResult() {
+  document.querySelector(".quiz-box").classList.add("hidden");
+  document.getElementById("result").classList.remove("hidden");
+
+  animateScore(score);
+}
+
 function animateScore(finalScore) {
   let count = 0;
   const interval = setInterval(() => {
     count++;
     document.getElementById("score").innerText = count;
-    if (count === finalScore) clearInterval(interval);
+    if (count >= finalScore) clearInterval(interval);
   }, 100);
 }
 
-// Start
 loadQuestion();
