@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Animated Quiz</title>
+
+  <!-- CSS connect -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- Glow effect auto add হবে JS দিয়ে -->
+
+  <!-- Progress bar -->
+  <div class="progress-bar">
+    <div id="progress"></div>
+  </div>
+
+  <!-- Timer -->
+  <div class="timer">
+    <svg>
+      <circle cx="40" cy="40" r="35"></circle>
+    </svg>
+    <span id="time">10</span>
+  </div>
+
+  <!-- Quiz Box -->
+  <div class="quiz-box fade">
+    <h2 id="question"></h2>
+    <div id="options"></div>
+    <button onclick="nextQuestion()">Next</button>
+  </div>
+
+  <!-- Result -->
+  <div id="result" class="hidden">
+    <h1>Your Score: <span id="score"></span></h1>
+  </div>
+
+</div>
+
+<!-- JS connect -->
+<script src="script.js"></script>
+
+</body>
+</html>
