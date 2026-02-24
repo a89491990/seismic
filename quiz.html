@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>Quiz</title>
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -27,10 +25,18 @@
     <div id="options"></div>
   </div>
 
-  <div id="result" class="hidden">
-    <h1>Your Score</h1>
-    <h2 id="score">0</h2>
-    <button onclick="location.reload()">Restart</button>
+  <div id="result" class="hidden result-box">
+    <h1 class="result-title">Quiz Completed 🎉</h1>
+
+    <div class="score-circle">
+      <span id="score">0</span>
+    </div>
+
+    <p id="gradeText"></p>
+
+    <button onclick="location.reload()" class="restart-btn">
+      Restart Quiz
+    </button>
   </div>
 
 </div>
