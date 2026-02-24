@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  font-family: Arial;
+  font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
   background-size: 600% 600%;
-  animation: gradientMove 10s ease infinite;
+  animation: gradientMove 12s ease infinite;
   color: white;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 /* Background animation */
@@ -18,96 +18,103 @@ body {
   100% {background-position: 0%}
 }
 
-/* Glow */
-.glow {
-  position: fixed;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(0,255,200,0.4), transparent);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
+.container {
+  width: 400px;
+  max-width: 90%;
 }
 
-/* Quiz Box */
+/* Quiz box */
 .quiz-box {
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(25px);
   background: rgba(255,255,255,0.05);
-  padding: 25px;
-  border-radius: 15px;
-  width: 350px;
-  text-align: center;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 0 40px rgba(0,255,200,0.2);
+}
+
+/* Question */
+#question {
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 
 /* Options */
 .option {
-  padding: 10px;
+  padding: 12px;
   margin: 10px 0;
-  background: rgba(255,255,255,0.1);
-  border-radius: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .option:hover {
-  transform: scale(1.05);
   background: rgba(0,255,200,0.3);
+  transform: scale(1.05);
+}
+
+/* Feedback */
+.correct {
+  background: rgba(0,255,100,0.5) !important;
+}
+
+.wrong {
+  background: rgba(255,0,0,0.5) !important;
 }
 
 /* Button */
 button {
+  width: 100%;
+  padding: 12px;
   margin-top: 15px;
-  padding: 10px;
   border: none;
-  background: #00f5a0;
+  background: linear-gradient(45deg, #00f5a0, #00d9f5);
+  border-radius: 10px;
   cursor: pointer;
-  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-/* Progress bar */
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Progress */
 .progress-bar {
   width: 100%;
   height: 6px;
   background: rgba(255,255,255,0.2);
+  margin-bottom: 15px;
+  border-radius: 10px;
 }
 
 #progress {
   height: 100%;
   width: 0%;
-  background: #00f5a0;
+  background: linear-gradient(90deg, #00f5a0, #00d9f5);
+  border-radius: 10px;
+  transition: 0.4s;
 }
 
 /* Timer */
 .timer {
-  position: relative;
-  width: 80px;
-  height: 80px;
-  margin: auto;
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 18px;
 }
 
-.timer svg {
-  transform: rotate(-90deg);
-}
-
-.timer circle {
-  fill: none;
-  stroke: #00f5a0;
-  stroke-width: 5;
-  stroke-dasharray: 220;
-}
-
-.timer span {
-  position: absolute;
-  top: 25px;
-  left: 30px;
+/* Result */
+#result {
+  text-align: center;
 }
 
 /* Animation */
 .fade {
-  animation: fade 0.5s;
+  animation: fade 0.4s;
 }
 
 @keyframes fade {
-  from {opacity: 0;}
+  from {opacity: 0; transform: translateY(20px);}
   to {opacity: 1;}
 }
 
