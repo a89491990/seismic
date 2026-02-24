@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Futuristic Quiz</title>
+  <title>Future Quiz</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="landing">
+<div class="hero">
 
-  <h1 class="title">FUTURE QUIZ</h1>
-  <p class="subtitle">Test Your Knowledge</p>
+  <h1 class="main-title">
+    FUTURE <span>QUIZ</span>
+  </h1>
 
-  <div class="categories">
-    <button onclick="startQuiz()">Start Quiz</button>
-  </div>
+  <p class="tagline">
+    Experience the next generation of interactive quizzes
+  </p>
+
+  <button class="start-btn" onclick="startQuiz()">
+    Start Experience →
+  </button>
 
 </div>
 
@@ -24,7 +29,7 @@ function startQuiz() {
   document.body.classList.add("fade-out");
   setTimeout(() => {
     window.location.href = "quiz.html";
-  }, 500);
+  }, 600);
 }
 </script>
 
