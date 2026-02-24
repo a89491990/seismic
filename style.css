@@ -1,0 +1,116 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(270deg, #0f2027, #203a43, #2c5364);
+  background-size: 600% 600%;
+  animation: gradientMove 10s ease infinite;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Background animation */
+@keyframes gradientMove {
+  0% {background-position: 0%}
+  50% {background-position: 100%}
+  100% {background-position: 0%}
+}
+
+/* Glow */
+.glow {
+  position: fixed;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(0,255,200,0.4), transparent);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+/* Quiz Box */
+.quiz-box {
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 15px;
+  width: 350px;
+  text-align: center;
+}
+
+/* Options */
+.option {
+  padding: 10px;
+  margin: 10px 0;
+  background: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.option:hover {
+  transform: scale(1.05);
+  background: rgba(0,255,200,0.3);
+}
+
+/* Button */
+button {
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  background: #00f5a0;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.2);
+}
+
+#progress {
+  height: 100%;
+  width: 0%;
+  background: #00f5a0;
+}
+
+/* Timer */
+.timer {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+.timer svg {
+  transform: rotate(-90deg);
+}
+
+.timer circle {
+  fill: none;
+  stroke: #00f5a0;
+  stroke-width: 5;
+  stroke-dasharray: 220;
+}
+
+.timer span {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+}
+
+/* Animation */
+.fade {
+  animation: fade 0.5s;
+}
+
+@keyframes fade {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+.hidden {
+  display: none;
+}
