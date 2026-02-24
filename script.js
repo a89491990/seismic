@@ -1,3 +1,32 @@
+// Redirect
+function startQuiz() {
+  document.body.style.opacity = "0";
+  setTimeout(() => {
+    window.location.href = "quiz.html";
+  }, 600);
+}
+
+// Glow follow
+const glow = document.querySelector(".glow");
+
+document.addEventListener("mousemove", e => {
+  if (glow) {
+    glow.style.left = e.clientX - 150 + "px";
+    glow.style.top = e.clientY - 150 + "px";
+  }
+});
+
+// Particles
+for (let i = 0; i < 20; i++) {
+  let p = document.createElement("div");
+  p.classList.add("particle");
+  document.body.appendChild(p);
+
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.top = Math.random() * 100 + "vh";
+}
+
+// QUIZ LOGIC
 const quizData = [
   {
     question: "What is Seismic?",
@@ -8,11 +37,6 @@ const quizData = [
     question: "Main feature of Seismic?",
     options: ["Speed", "Privacy", "Gaming", "Ads"],
     answer: 1
-  },
-  {
-    question: "Seismic is used for?",
-    options: ["Entertainment", "Finance", "Photos", "Music"],
-    answer: 1
   }
 ];
 
@@ -21,7 +45,7 @@ let score = 0;
 let time = 10;
 let interval;
 
-const nextBtn = document.getElementById("nextBtn");
+if (document.getElementById("question")) loadQuestion();
 
 function loadQuestion() {
   const q = quizData[current];
@@ -55,18 +79,19 @@ function loadQuestion() {
   startTimer();
 }
 
-nextBtn.onclick = () => {
-  current++;
-  if (current < quizData.length) {
-    animateFade();
-    loadQuestion();
-  } else {
-    showResult();
+document.addEventListener("click", e => {
+  if (e.target.id === "nextBtn") {
+    current++;
+    if (current < quizData.length) {
+      loadQuestion();
+    } else {
+      showResult();
+    }
   }
-};
+});
 
 function updateProgress() {
-  let percent = ((current) / quizData.length) * 100;
+  let percent = (current / quizData.length) * 100;
   document.getElementById("progress").style.width = percent + "%";
 }
 
@@ -81,32 +106,15 @@ function startTimer() {
 
     if (time <= 0) {
       clearInterval(interval);
-      nextBtn.click();
+      current++;
+      if (current < quizData.length) loadQuestion();
+      else showResult();
     }
   }, 1000);
-}
-
-function animateFade() {
-  const box = document.querySelector(".quiz-box");
-  box.classList.remove("fade");
-  void box.offsetWidth;
-  box.classList.add("fade");
 }
 
 function showResult() {
   document.querySelector(".quiz-box").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
-
-  animateScore(score);
+  document.getElementById("score").innerText = score;
 }
-
-function animateScore(finalScore) {
-  let count = 0;
-  const interval = setInterval(() => {
-    count++;
-    document.getElementById("score").innerText = count;
-    if (count >= finalScore) clearInterval(interval);
-  }, 100);
-}
-
-loadQuestion();
