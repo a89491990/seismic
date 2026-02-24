@@ -1,3 +1,4 @@
+/* Background */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -5,22 +6,61 @@ body {
   background-size: 600% 600%;
   animation: gradientMove 12s ease infinite;
   color: white;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* Background animation */
+/* Animation */
 @keyframes gradientMove {
   0% {background-position: 0%}
   50% {background-position: 100%}
   100% {background-position: 0%}
 }
 
+/* Landing */
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 40px;
+  letter-spacing: 3px;
+  animation: fade 1s ease;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.categories button {
+  padding: 12px 25px;
+  border: none;
+  background: linear-gradient(45deg, #00f5a0, #00d9f5);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.categories button:hover {
+  transform: scale(1.1);
+}
+
+/* Fade out */
+.fade-out {
+  opacity: 0;
+  transition: 0.5s;
+}
+
+/* Quiz container */
 .container {
   width: 400px;
   max-width: 90%;
+  margin: auto;
+  padding-top: 50px;
 }
 
 /* Quiz box */
@@ -32,12 +72,6 @@ body {
   box-shadow: 0 0 40px rgba(0,255,200,0.2);
 }
 
-/* Question */
-#question {
-  margin-bottom: 20px;
-  font-size: 20px;
-}
-
 /* Options */
 .option {
   padding: 12px;
@@ -45,22 +79,14 @@ body {
   background: rgba(255,255,255,0.08);
   border-radius: 10px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 .option:hover {
   background: rgba(0,255,200,0.3);
-  transform: scale(1.05);
 }
 
-/* Feedback */
-.correct {
-  background: rgba(0,255,100,0.5) !important;
-}
-
-.wrong {
-  background: rgba(255,0,0,0.5) !important;
-}
+.correct { background: green !important; }
+.wrong { background: red !important; }
 
 /* Button */
 button {
@@ -71,12 +97,6 @@ button {
   background: linear-gradient(45deg, #00f5a0, #00d9f5);
   border-radius: 10px;
   cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
 }
 
 /* Progress */
@@ -84,40 +104,30 @@ button:hover {
   width: 100%;
   height: 6px;
   background: rgba(255,255,255,0.2);
-  margin-bottom: 15px;
-  border-radius: 10px;
 }
 
 #progress {
   height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #00f5a0, #00d9f5);
-  border-radius: 10px;
-  transition: 0.4s;
+  background: #00f5a0;
 }
 
 /* Timer */
 .timer {
   text-align: center;
-  margin-bottom: 15px;
-  font-size: 18px;
+  margin: 10px 0;
 }
 
 /* Result */
-#result {
-  text-align: center;
+.hidden {
+  display: none;
 }
 
-/* Animation */
+/* Fade */
 .fade {
   animation: fade 0.4s;
 }
 
 @keyframes fade {
-  from {opacity: 0; transform: translateY(20px);}
+  from {opacity: 0;}
   to {opacity: 1;}
-}
-
-.hidden {
-  display: none;
 }
