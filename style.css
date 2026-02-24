@@ -8,6 +8,14 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+
+  animation: fadeIn 0.6s ease;
+}
+
+/* PAGE FADE */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 /* HERO */
@@ -60,6 +68,22 @@ body {
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
 
+/* QUESTION ANIMATION */
+.fade-slide {
+  animation: fadeSlide 0.4s ease;
+}
+
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* OPTIONS */
 .option {
   padding: 12px;
@@ -75,6 +99,10 @@ body {
   background: rgba(0,255,200,0.3);
 }
 
+.option:active {
+  transform: scale(0.95);
+}
+
 .correct { background: rgba(0,255,100,0.5) !important; }
 .wrong { background: rgba(255,0,0,0.5) !important; }
 
@@ -88,6 +116,7 @@ body {
 #progress {
   height: 100%;
   background: linear-gradient(90deg, #00f5a0, #00d9f5);
+  transition: 0.4s;
 }
 
 /* TIMER */
@@ -100,12 +129,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: popUp 0.5s ease;
 }
 
-.result-title {
-  font-size: 28px;
+@keyframes popUp {
+  from {opacity: 0; transform: scale(0.8);}
+  to {opacity: 1; transform: scale(1);}
 }
 
+/* SCORE */
 .score-circle {
   width: 120px;
   height: 120px;
@@ -116,10 +148,10 @@ body {
   align-items: center;
   margin: 20px 0;
   font-size: 30px;
-  box-shadow: 0 0 25px rgba(0,255,200,0.3);
 }
 
-.restart-btn {
+/* BUTTON */
+button {
   padding: 12px 25px;
   border-radius: 30px;
   border: none;
